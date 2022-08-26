@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "org.ostrade.instrument";
+option java_outer_classname = "InstrumentGrpcProto";
+
+package ostrade.instrument;
+
+import "ostrade/common/type.proto";
+import "ostrade/instrument/instrument.proto";
+
+service InstrumentGrpc {
+    rpc GetAll (ostrade.type.Empty) returns (InstrumentList) {}
+    rpc Get (InstrumentId) returns (ostrade.instrument.Instrument) {}
+    rpc Insert (ostrade.instrument.Instrument) returns (ostrade.instrument.Instrument) {}
+    rpc Update (ostrade.instrument.Instrument) returns (ostrade.instrument.Instrument) {}
+    rpc Remove (InstrumentId) returns (ostrade.type.Empty) {}
+}
+
+message InstrumentList {
+    repeated ostrade.instrument.Instrument instruments = 1;
+}
+
+message InstrumentId {
+    int64 id = 1;
+}

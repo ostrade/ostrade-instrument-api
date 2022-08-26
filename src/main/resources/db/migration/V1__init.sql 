@@ -1,0 +1,29 @@
+CREATE TABLE instrument
+(
+    instrument_id BIGSERIAL PRIMARY KEY,
+    execution_venue TEXT NOT NULL,
+    security_type TEXT NOT NULL,
+    cfi TEXT NOT NULL,
+    symbol TEXT NOT NULL,
+    description TEXT NOT NULL,
+    maturity_month_year TEXT NOT NULL,
+    maturity_date DATE NOT NULL,
+    unit_of_measure TEXT NOT NULL,
+    unit_of_measure_quantity DECIMAL NOT NULL,
+    price_unit_of_measure TEXT NOT NULL,
+    price_unit_of_measure_quantity DECIMAL NOT NULL,
+    settlement_method TEXT NOT NULL,
+    price_quote_currency TEXT NOT NULL
+);
+ALTER SEQUENCE instrument_instrument_id_seq RESTART 1000000;
+
+CREATE TABLE instrument_leg
+(
+    instrument_leg_id BIGSERIAL PRIMARY KEY,
+    instrument_id BIGINT NOT NULL,
+    symbol TEXT NOT NULL,
+    maturity_month_year TEXT NOT NULL,
+    security_type TEXT NOT NULL,
+    side TEXT NOT NULL
+);
+ALTER SEQUENCE instrument_leg_instrument_leg_id_seq RESTART 1000000;
